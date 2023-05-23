@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { variables } from './Variables.js';
+import jwt_decode from "jwt-decode";
 
 export class Portfolio extends Component {
     constructor(props) {
@@ -12,7 +13,9 @@ export class Portfolio extends Component {
     refreshList() {
         console.log("Getting the portfolio");
 
-        fetch(variables.API_URL_COIN_VAULT + 'portfolios/22222', {
+        var jwtJson = jwt_decode(localStorage.getItem("jwt-coinvault"));
+
+        fetch(variables.API_URL_COIN_VAULT + 'portfolios/' + jwtJson.sub, {
             headers: {
               'Authorization': 'Bearer ' + localStorage.getItem("jwt-coinvault")
             }
@@ -40,16 +43,20 @@ export class Portfolio extends Component {
                     <thead>
                         <tr>
                             <th>Portfolio ID</th>
+                            <th>Trade ID</th>
                             <th>Portfolio Name</th>
                             <th>Portfolio Amount</th>
+                            <th>Portfolio Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         {portfolio.map(p =>
                             <tr key={p.id}>
-                                <td>{p.id}</td>
+                                <td>#{p.id}</td>
+                                <td>{p.tradeId}</td>
                                 <td>{p.name}</td>
                                 <td>{p.amount}</td>
+                                <td>€{p.price}</td>
                             </tr>
                         )}
                     </tbody>

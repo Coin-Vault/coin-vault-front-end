@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { variables } from './Variables.js';
+import jwt_decode from "jwt-decode";
 
 export class Trades extends Component {
     constructor(props) {
         super(props);
         this.state = {
             trades: [],
-            DepartmentName: "",
+            AmountTrade: 0
         }
     }
 
     refreshList() {
         console.log("Getting all trades");
 
-        fetch(variables.API_URL_COIN_VAULT + 'trades', {
+        var jwtJson = jwt_decode(localStorage.getItem("jwt-coinvault"));
+
+        fetch(variables.API_URL_COIN_VAULT + 'trades/' + jwtJson.sub, {
             headers: {
               'Authorization': 'Bearer ' + localStorage.getItem("jwt-coinvault")
             }
@@ -27,23 +30,26 @@ export class Trades extends Component {
     }
 
     createTrade() {
-        fetch(variables.API_URL + 'department/adddepartment', {
+        var jwtJson = jwt_decode(localStorage.getItem("jwt-coinvault"));
+
+        fetch(variables.API_URL_COIN_VAULT + 'trades', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                DepartmentName: this.state.DepartmentName
+                Name: "BITCOIN",
+                UserId: jwtJson.sub,
+                Amount: this.state.AmountTrade,
             })
         })
-            .then(res => res.json())
-            .then((result) => {
-                alert(result);
-                this.refreshList();
-            }, (error) => {
-                alert('Failed');
-            })
+          
+        this.refreshList();
+    }
+
+    setAmountTrade = (e) => {
+        this.setState({ AmountTrade: e.target.value });
     }
 
     componentDidMount() {
@@ -52,10 +58,7 @@ export class Trades extends Component {
 
     render() {
         const {
-            trades,
-            modalTitle,
-            DepartmentId,
-            DepartmentName
+            trades
         } = this.state;
 
         return (
@@ -63,7 +66,7 @@ export class Trades extends Component {
                 <button type="button"
                     className="btn btn-primary m-2 float-middle mt-5"
                     data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+                    data-bs-target="#createModal">
                     Add Trade
                 </button>
 
@@ -78,7 +81,7 @@ export class Trades extends Component {
                     <tbody>
                         {trades.map(t =>
                             <tr key={t.id}>
-                                <td>{t.id}</td>
+                                <td>#{t.id}</td>
                                 <td>{t.name}</td>
                                 <td>{t.amount}</td>
                             </tr>
@@ -86,7 +89,7 @@ export class Trades extends Component {
                     </tbody>
                 </table>
 
-                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-hidden="true">
+                <div className="modal fade" id="createModal" tabIndex="-1" aria-hidden="true">
                     <div className="modal-dialog modal-lg modal-dialog-centered">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -102,7 +105,7 @@ export class Trades extends Component {
                                 </div>
                                 <div className="input-group mb-3">
                                     <span className="input-group-text" style={{width: "85px"}}>Amount</span>
-                                    <input type="number" className="form-control" onChange={this.changeDepartmentName} />
+                                    <input type="number" className="form-control" onChange={this.setAmountTrade} />
                                 </div>
                                 <button type="button" className="btn btn-primary float-start" onClick={() => this.createTrade()}>Create</button>                                    
                             </div>
