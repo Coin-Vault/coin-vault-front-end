@@ -1,3 +1,3 @@
 export const variables = {
-    API_URL_TRADE: "http://localhost:5129/api/",
+    API_URL_COIN_VAULT: "http://coinvault.com/api/",
 }
