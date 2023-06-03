@@ -10,16 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
+    steps:  
+      - uses: actions/checkout@v3
+      
       - name: Launch portfolio service
-        run: docker-compose up -d coin-vault-microservice-portfolio
+        run: docker-compose up -d coin-vault-microservice-portfolio coin-vault-microservice-trade
         
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
         with:
           time: '30s'
-      
-      - uses: actions/checkout@v3
 
       - name: Set up NodeJS environment
         uses: actions/setup-node@v2
