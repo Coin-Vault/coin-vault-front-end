@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  coin-vault-microservice-portfolio:
+    image: robfontys/coin-vault-microservice-portfolio:latest
+    networks:
+      - CoinVault-network
+    ports:
+      - 5400:5400
+
+  coin-vault-trade-portfolio:
+    image: robfontys/coin-vault-microservice-trade:latest
+    networks:
+      - CoinVault-network
+    ports:
+      - 5401:5401
+
+networks:
+  CoinVault-network:     

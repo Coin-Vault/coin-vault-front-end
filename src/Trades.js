@@ -16,7 +16,7 @@ export class Trades extends Component {
 
         var jwtJson = jwt_decode(localStorage.getItem("jwt-coinvault"));
 
-        fetch(variables.API_URL_COIN_VAULT + 'trades/' + jwtJson.sub, {
+        fetch(variables.API_URL_COIN_VAULT_TRADE + jwtJson.sub, {
             headers: {
               'Authorization': 'Bearer ' + localStorage.getItem("jwt-coinvault")
             }
@@ -32,7 +32,7 @@ export class Trades extends Component {
     createTrade() {
         var jwtJson = jwt_decode(localStorage.getItem("jwt-coinvault"));
 
-        fetch(variables.API_URL_COIN_VAULT + 'trades', {
+        fetch(variables.API_URL_COIN_VAULT_TRADE, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -70,7 +70,7 @@ export class Trades extends Component {
                     Add Trade
                 </button>
 
-                <table className="table table-striped">
+                <table className="table table-striped" id='trades'>
                     <thead>
                         <tr>
                             <th>Trade ID</th>

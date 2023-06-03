@@ -15,7 +15,7 @@ export class Portfolio extends Component {
 
         var jwtJson = jwt_decode(localStorage.getItem("jwt-coinvault"));
 
-        fetch(variables.API_URL_COIN_VAULT + 'portfolios/' + jwtJson.sub, {
+        fetch(variables.API_URL_COIN_VAULT_PORTFOLIO + jwtJson.sub, {
             headers: {
               'Authorization': 'Bearer ' + localStorage.getItem("jwt-coinvault")
             }
@@ -39,7 +39,7 @@ export class Portfolio extends Component {
 
         return (
             <div>
-                <table className="table table-striped">
+                <table className="table table-striped" id='portfolio'>
                     <thead>
                         <tr>
                             <th>Portfolio ID</th>

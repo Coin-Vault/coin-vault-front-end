@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const ProfileAuth0 = () => {
-    const { user, isAuthenticated, getAccessTokenWithPopup } = useAuth0();
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const [ userAccessToken, setUserAccessToken] = useState('');
 
     useEffect(() => {
         const getUserMetadata = async () => {
             try {
-                const accessToken = await getAccessTokenWithPopup({
+                const accessToken = await getAccessTokenSilently({
                     authorizationParams: {
                         audience: `http://coinvault.com/`,
                     },
@@ -22,7 +22,7 @@ const ProfileAuth0 = () => {
         };
 
         getUserMetadata();
-    }, [getAccessTokenWithPopup, user?.sub]);
+    }, [getAccessTokenSilently, user?.sub]);
 
     return (
         isAuthenticated && (
