@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
     
   workflow_dispatch:
 
@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:  
+    steps:
       - uses: actions/checkout@v3
       
       - name: Launch portfolio service
@@ -41,12 +41,14 @@ jobs:
        
       - name: Install package dependencies
         run: npm install
-      
-      - name: Create test build
-        run: npm run build
-        
+
       - name: Run front-end
-        run: npm start
+        run: npm start &
         
+      - name: Wait for front-end to start
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s' # Adjust the wait time if needed
+
       - name: Cypress e2e test
         run: npx cypress run --record --key ea5974a6-1eb0-420d-bac7-a46e37e19f15
