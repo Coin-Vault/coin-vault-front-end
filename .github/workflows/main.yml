@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Launch portfolio service
-        run: docker-compose up -d coin-vault-microservice-portfolio coin-vault-microservice-trade
+        run: docker-compose up -d coin-vault-microservice-portfolio
         
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
