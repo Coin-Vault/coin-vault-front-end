@@ -5,14 +5,14 @@ services:
     networks:
       - CoinVault-network
     ports:
-      - 5400:5400
+      - 3001:3000
 
   coin-vault-microservice-trade:
     image: robfontys/coin-vault-microservice-trade:latest
     networks:
       - CoinVault-network
     ports:
-      - 5401:5401
+      - 3002:3000
 
 networks:
   CoinVault-network:     
