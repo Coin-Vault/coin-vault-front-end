@@ -3,9 +3,9 @@ services:
   coin-vault-microservice-portfolio:
     image: robfontys/coin-vault-microservice-portfolio:latest
     ports:
-      - 3001:80
+      - 5400:80
 
   coin-vault-microservice-trade:
     image: robfontys/coin-vault-microservice-trade:latest
     ports:
-      - 3002:80
+      - 5401:80
