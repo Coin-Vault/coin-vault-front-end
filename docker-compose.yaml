@@ -2,17 +2,10 @@ version: '3.8'
 services:
   coin-vault-microservice-portfolio:
     image: robfontys/coin-vault-microservice-portfolio:latest
-    networks:
-      - CoinVault-network
     ports:
-      - 3001:3000
+      - 3001:80
 
   coin-vault-microservice-trade:
     image: robfontys/coin-vault-microservice-trade:latest
-    networks:
-      - CoinVault-network
     ports:
-      - 3002:3000
-
-networks:
-  CoinVault-network:     
+      - 3002:80
