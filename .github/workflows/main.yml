@@ -45,5 +45,8 @@ jobs:
       - name: Create test build
         run: npm run build
         
+      - name: Run front-end
+        run: npm start
+        
       - name: Cypress e2e test
         run: npx cypress run --record --key ea5974a6-1eb0-420d-bac7-a46e37e19f15
