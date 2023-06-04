@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Launch portfolio service
-        run: docker-compose up -d coin-vault-microservice-portfolio coin-vault-microservice-trade
+      - name: Launch api oontainers
+        run: docker-compose up -d
         
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
