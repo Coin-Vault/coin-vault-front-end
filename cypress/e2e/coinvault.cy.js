@@ -19,7 +19,7 @@ describe('Coin Vault End-To-End Test', () => {
 
         //Visit profile page
         cy.get(':nth-child(3) > .btn').click()
-        cy.wait(1000)
+        cy.wait(10000)
 
         //Visit portfolio page
         cy.get(':nth-child(5) > .btn').click()
