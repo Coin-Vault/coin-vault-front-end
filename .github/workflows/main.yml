@@ -16,10 +16,10 @@ jobs:
       - name: Launch api oontainers
         run: docker-compose up -d
         
-      - name: Sleep for 30 seconds
+      - name: Sleep for 120 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '30s'
+          time: '120s'
 
       - name: Set up NodeJS environment
         uses: actions/setup-node@v2
