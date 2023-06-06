@@ -11,7 +11,7 @@ const ProfileAuth0 = () => {
                 const accessToken = await getAccessTokenSilently({
                     authorizationParams: {
                         audience: `http://coinvault.com/`,
-                    },
+                    }
                 });
 
                 localStorage.setItem('jwt-coinvault', accessToken);

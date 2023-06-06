@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { variables } from './Variables.js';
 import jwt_decode from "jwt-decode";
 
 export class Portfolio extends Component {
@@ -15,7 +14,7 @@ export class Portfolio extends Component {
 
         var jwtJson = jwt_decode(localStorage.getItem("jwt-coinvault"));
 
-        fetch(variables.API_URL_COIN_VAULT_PORTFOLIO + jwtJson.sub, {
+        fetch(process.env.REACT_APP_API_URL_COIN_VAULT_PORTFOLIO + jwtJson.sub, {
             headers: {
               'Authorization': 'Bearer ' + localStorage.getItem("jwt-coinvault")
             }
