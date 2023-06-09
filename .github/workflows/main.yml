@@ -51,7 +51,7 @@ jobs:
       - name: Wait for front-end to start
         uses: jakejarvis/wait-action@master
         with:
-          time: '30s' # Adjust the wait time if needed
+          time: '30s'
 
       - name: Cypress e2e test
         run: npx cypress run --record --key ea5974a6-1eb0-420d-bac7-a46e37e19f15
