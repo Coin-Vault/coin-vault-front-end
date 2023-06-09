@@ -1,3 +1,4 @@
+import cy from 'cypress'
 import React from 'react'
 import ProfileAuth0 from './profileAuth0'
 

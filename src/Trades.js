@@ -35,7 +35,8 @@ export class Trades extends Component {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem("jwt-coinvault")
             },
             body: JSON.stringify({
                 Name: "BITCOIN",
