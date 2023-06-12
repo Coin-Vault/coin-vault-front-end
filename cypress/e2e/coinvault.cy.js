@@ -19,7 +19,7 @@ describe('Coin Vault End-To-End Test', () => {
 
         //Visit profile page
         cy.get(':nth-child(3) > .btn').click()
-        cy.wait(5000)
+        cy.wait(10000)
 
         //Visit portfolio page
         cy.get(':nth-child(5) > .btn').click()
@@ -50,9 +50,9 @@ describe('Coin Vault End-To-End Test', () => {
         cy.get(':nth-child(2) > .form-control').type(100)
         cy.get('.modal-body > .btn').click()
         cy.get('.btn-close').click()
-        cy.wait(5000)
+        cy.wait(10000)
         cy.reload()
-        cy.wait(5000)
+        cy.wait(10000)
 
         //Get rows from trade table
         cy.get("#trades")
