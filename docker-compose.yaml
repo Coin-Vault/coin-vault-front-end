@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  coin-vault-microservice-portfolio:
+    image: robfontys/coin-vault-microservice-portfolio:latest
+    ports:
+      - 5400:80
+
+  coin-vault-microservice-trade:
+    image: robfontys/coin-vault-microservice-trade:latest
+    ports:
+      - 5401:80
